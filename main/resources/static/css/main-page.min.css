@@ -1,0 +1,63 @@
+.main_page_nav{
+    height: 80px;
+    width: 100%;
+    background-color: #343a40;
+}
+
+.main_page_logoname{
+    font-size: 30px;
+    line-height: 80px;
+    color: #ffffff;
+    margin-left: 20px;
+    display: inline;
+}
+
+.main_page_logo{
+    height: 30px;
+    width; 30px;
+    color: #ffffff;
+    margin-left: 15px;
+    display: inline;
+}
+
+.main_page_btn{
+    font-size: 18px;
+    line-height: 80px;
+    color: #ffffff;
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.main_page_headline{
+    text-align: center;
+    font-size: 30px;
+    color: #000000;
+}
+
+.main_page_search{
+    height:40px;
+    width:350px;
+    color: #000000;
+    font-size: 15px;
+    padding-left: 6px;
+    margin-left: 35%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.main_page_search_btn{
+    height:30px;
+    line-height: 40px;
+    width:30px;
+    display: inline;
+    cursor: pointer;
+}
+
+.main_page_kinds_title{
+    margin-top: 40px;
+}
+
+
