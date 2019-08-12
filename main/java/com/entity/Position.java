@@ -1,9 +1,7 @@
 package com.entity;
 
-import java.util.Date;
-
 public class Position extends PositionKey {
-    private Date date;
+    private String date;
 
     private Double open;
 
@@ -15,11 +13,11 @@ public class Position extends PositionKey {
 
     private String type;
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

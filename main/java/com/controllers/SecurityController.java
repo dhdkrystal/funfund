@@ -46,7 +46,7 @@ public class SecurityController {
      */
     @ResponseBody
     @RequestMapping(value = "/delete/security", method = RequestMethod.POST)
-    public Error deleteSecurity(@Param("securityName") String securityName, @Param("date") Date date) {
+    public Error deleteSecurity(@Param("securityName") String securityName, @Param("date") String date) {
         System.out.println("Controller:Request to delete a security record!");
         SecurityKey securityKey = new SecurityKey();
         securityKey.setSecurityName(securityName);
@@ -66,7 +66,7 @@ public class SecurityController {
     */
     @ResponseBody
     @RequestMapping(value = "/update/security", method = RequestMethod.POST)
-    public Error updateSecurity(@RequestBody String json, @Param("securityName") String securityName, @Param("date") Date date) {
+    public Error updateSecurity(@RequestBody String json, @Param("securityName") String securityName, @Param("date") String date) {
         Gson gson = new Gson();
         System.out.println("Controller:Request to update a security record!");
         Security security = gson.fromJson(json,Security.class);
@@ -86,13 +86,29 @@ public class SecurityController {
      */
     @ResponseBody
     @RequestMapping(value = "/get/securitylist", method = RequestMethod.GET)
-    public List<Security> getSecurityList(@Param("type") String type){
-        System.out.println("Request to get the security list of: "+type);
-        List<Security> securityList = service.getSecurityList(type);
+    public List<Security> getSecurityList(@Param("type") String type, @Param("date") String date){
+        System.out.println("Request to get today security list of: "+type);
+        List<Security> securityList = service.getSecurityList(type,date);
         if(securityList == null){
             System.out.println("Failed to get the security list!");
         }
         System.out.println("Get the security list successfully!");
+        return securityList;
+    }
+
+
+    /*
+    *Admin get the history information of a security
+     */
+    @ResponseBody
+    @RequestMapping(value = "/get/securityhistory", method = RequestMethod.GET)
+    public List<Security> getSecurityHistory(@Param("securityName") String securityName){
+        System.out.println("Request to get a security's history list of: "+securityName);
+        List<Security> securityList = service.getSecurityHistory(securityName);
+        if(securityList == null){
+            System.out.println("Failed to get the security history!");
+        }
+        System.out.println("Get the security history successfully!");
         return securityList;
     }
 

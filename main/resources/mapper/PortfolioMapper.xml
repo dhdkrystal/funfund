@@ -3,7 +3,7 @@
 <mapper namespace="com.mapper.PortfolioMapper" >
   <resultMap id="BaseResultMap" type="com.entity.Portfolio" >
     <id column="portfolio_name" property="portfolioName" jdbcType="VARCHAR" />
-    <result column="date" property="date" jdbcType="DATE" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
     <result column="manager" property="manager" jdbcType="VARCHAR" />
   </resultMap>
 
@@ -26,7 +26,7 @@
   <insert id="insert" parameterType="com.entity.Portfolio" >
     insert into portfolio (portfolio_name, date, manager
       )
-    values (#{portfolioName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{manager,jdbcType=VARCHAR}
+    values (#{portfolioName,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR}
       )
   </insert>
 
@@ -48,7 +48,7 @@
         #{portfolioName,jdbcType=VARCHAR},
       </if>
       <if test="date != null" >
-        #{date,jdbcType=DATE},
+        #{date,jdbcType=VARCHAR},
       </if>
       <if test="manager != null" >
         #{manager,jdbcType=VARCHAR},
@@ -60,7 +60,7 @@
     update portfolio
     <set >
       <if test="date != null" >
-        date = #{date,jdbcType=DATE},
+        date = #{date,jdbcType=VARCHAR},
       </if>
       <if test="manager != null" >
         manager = #{manager,jdbcType=VARCHAR},
@@ -71,7 +71,7 @@
 
   <update id="updateByPrimaryKey" parameterType="com.entity.Portfolio" >
     update portfolio
-    set date = #{date,jdbcType=DATE},
+    set date = #{date,jdbcType=VARCHAR},
       manager = #{manager,jdbcType=VARCHAR}
     where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
   </update>

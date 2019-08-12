@@ -25,11 +25,11 @@ public class LoginServiceImpl implements LoginService {
         else{
             try{
 
-                    if(user.getUserPassword().equals(userInfo.getUserPassword())) {
+                    if(user.getUserPassword().equals(userInfo.getUserPassword()) && user.getRole() == userInfo.getRole()) {
 //                        mapper.updateByPrimaryKeySelective(userInfo);
                         error=new Error(LOGIN_SUCCESS, "Login success!");
                     }else {
-                        error = new Error(WRONG_PASSWORD, "Name or password is wrong!");
+                        error = new Error(WRONG_PASSWORD, "Name, password or type is wrong!");
                     }
             }catch (Exception e){
                 e.printStackTrace();

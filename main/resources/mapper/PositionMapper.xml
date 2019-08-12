@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.entity.Position" >
     <id column="portfolio_name" property="portfolioName" jdbcType="VARCHAR" />
     <id column="security_name" property="securityName" jdbcType="VARCHAR" />
-    <result column="date" property="date" jdbcType="DATE" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
     <result column="open" property="open" jdbcType="DOUBLE" />
     <result column="high" property="high" jdbcType="DOUBLE" />
     <result column="low" property="low" jdbcType="DOUBLE" />
@@ -34,7 +34,7 @@
     insert into position (portfolio_name, security_name, date, 
       open, high, low, close, 
       type)
-    values (#{portfolioName,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+    values (#{portfolioName,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR},
       #{open,jdbcType=DOUBLE}, #{high,jdbcType=DOUBLE}, #{low,jdbcType=DOUBLE}, #{close,jdbcType=DOUBLE}, 
       #{type,jdbcType=VARCHAR})
   </insert>
@@ -75,7 +75,7 @@
         #{securityName,jdbcType=VARCHAR},
       </if>
       <if test="date != null" >
-        #{date,jdbcType=DATE},
+        #{date,jdbcType=VARCHAR},
       </if>
       <if test="open != null" >
         #{open,jdbcType=DOUBLE},
@@ -99,7 +99,7 @@
     update position
     <set >
       <if test="date != null" >
-        date = #{date,jdbcType=DATE},
+        date = #{date,jdbcType=VARCHAR},
       </if>
       <if test="open != null" >
         open = #{open,jdbcType=DOUBLE},
@@ -123,7 +123,7 @@
 
   <update id="updateByPrimaryKey" parameterType="com.entity.Position" >
     update position
-    set date = #{date,jdbcType=DATE},
+    set date = #{date,jdbcType=VARCHAR},
       open = #{open,jdbcType=DOUBLE},
       high = #{high,jdbcType=DOUBLE},
       low = #{low,jdbcType=DOUBLE},

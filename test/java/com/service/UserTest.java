@@ -23,10 +23,9 @@ public class UserTest {
 		Error error;
 		User manager = new User();
 
-		Date date = new Date(2001,5,7);
-		manager.setUserName("ling");
+		manager.setUserName("Ani");
 		manager.setUserPassword("1234");
-		manager.setStartDate(date);
+		manager.setStartDate("2018-05-23");
 		manager.setRole(0);
 		manager.setPosition("manager");
 		manager.setDescription("Good job");
@@ -38,7 +37,7 @@ public class UserTest {
 	@Test
 	public void deleteManagerTest() throws Exception{
 		Error error;
-		error = service.deleteManager("ling");
+		error = service.deleteManager("Ani");
 		System.out.println(error.getMessage());
 	}
 
@@ -47,12 +46,11 @@ public class UserTest {
 		Error error;
 		User manager = new User();
 
-		Date date = new Date(2001,5,7);
 		manager.setUserName("king");
 		manager.setUserPassword("123w");
 		manager.setPosition("fund manager");
 		manager.setDescription("Good job");
-		manager.setStartDate(date);
+		manager.setStartDate("2019-01-01");
 
 		error = service.updateManager(manager);
 		System.out.println(error.getMessage());

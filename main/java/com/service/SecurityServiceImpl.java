@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.util.Constant.*;
@@ -78,14 +79,32 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     /*
-    *Admin operation: get ecurity list of stock or bond or futures or etfs
+    *Admin operation: get today security list of stock or bond or futures or etfs
      */
-    public List<Security> getSecurityList(String type){
+    public List<Security> getSecurityList(String type, String date){
+        System.out.println("type: "+"date:"+date);
         List<Security> securityList = mapper.selectSecurityByType(type);
+        List<Security> targetList = new ArrayList<Security>();
+        for(Security security : securityList){
+            if(security.getDate().equals(date)){
+                targetList.add(security);
+            }
+        }
+        if(targetList == null){
+            return null;
+        }
+       return targetList;
+    }
+
+    /*
+    *Admin operation: get a security history
+     */
+    public List<Security> getSecurityHistory(String securityName){
+        List<Security> securityList = mapper.selectSecurityByName(securityName);
         if(securityList == null){
             return null;
         }
-       return securityList;
+        return securityList;
     }
 
 }

@@ -1,11 +1,10 @@
 package com.entity;
 
-import java.util.Date;
 
 public class Portfolio {
     private String portfolioName;
 
-    private Date date;
+    private String date;
 
     private String manager;
 
@@ -17,11 +16,11 @@ public class Portfolio {
         this.portfolioName = portfolioName == null ? null : portfolioName.trim();
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

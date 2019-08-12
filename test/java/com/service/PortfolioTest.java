@@ -25,9 +25,8 @@ public class PortfolioTest {
 		Error error;
 		Portfolio portfolio = new Portfolio();
 
-		Date date = new Date(2018,6,6);
-		portfolio.setPortfolioName("BScombine");
-		portfolio.setDate(date);
+		portfolio.setPortfolioName("BFcombine");
+		portfolio.setDate("2018-04-29");
 		portfolio.setManager("Jack");
 
 		error = service.addPortfolio(portfolio);
@@ -37,7 +36,7 @@ public class PortfolioTest {
 	@Test
 	public void deletePortfolioTest() throws Exception{
 		Error error;
-		error = service.deletePortfolio("BEcombine");
+		error = service.deletePortfolio("ACBN");
 		System.out.println(error.getMessage());
 	}
 
@@ -46,7 +45,7 @@ public class PortfolioTest {
 		Error error;
 		Portfolio portfolio = new Portfolio();
 
-		portfolio.setPortfolioName("ACBN");
+		portfolio.setPortfolioName("BFcombine");
 		portfolio.setManager("Lin");
 
 		error = service.updatePortfolio(portfolio);

@@ -24,15 +24,14 @@ public class SecurityTest {
 		Error error;
 		Security security = new Security();
 
-		Date date = new Date(2018,6,6);
-		security.setSecurityName("Depuo");
-		security.setDate(date);
+		security.setSecurityName("Ehkn");
+		security.setDate("2018-05-01");
 		security.setOpen(18.80);
 		security.setHigh(21.50);
 		security.setLow(14.58);
 		security.setClose(17.45);
 		security.setVolume(1290);
-		security.setType("Futures");
+		security.setType("ETFs");
 
 		error = service.addSecurity(security);
 		System.out.println(error.getMessage());
@@ -41,10 +40,10 @@ public class SecurityTest {
 	@Test
 	public void deleteSecurityTest() throws Exception{
 		Error error;
-		Date date = new Date(2018,6,6);
+
 		SecurityKey securityKey = new SecurityKey();
-		securityKey.setSecurityName("Depuo");
-		securityKey.setDate(date);
+		securityKey.setSecurityName("Ehkn");
+		securityKey.setDate("2018-05-01");
 		error = service.deleteSecurity(securityKey);
 		System.out.println(error.getMessage());
 	}
@@ -54,14 +53,13 @@ public class SecurityTest {
 		Error error;
 		Security security = new Security();
 
-		Date date = new Date(2001,5,7);
 		security.setSecurityName("YAhoo");
-		security.setDate(date);
+		security.setDate("2018-06-06");
 		security.setOpen(18.80);
 		security.setHigh(21.50);
 		security.setLow(14.58);
 		security.setClose(17.45);
-		security.setVolume(1270);
+		security.setVolume(2000);
 		security.setType("Futures");
 
 		error = service.updateSecurity(security);
@@ -70,30 +68,47 @@ public class SecurityTest {
 
 	@Test
 	public void getStockListTest(){
+		String date = "2019-03-21";
 		List<Security> securityList = new ArrayList<Security>();
-		securityList = service.getSecurityList("Stock");
+		securityList = service.getSecurityList("Stock",date);
 		System.out.println("Security List: name("+securityList.get(0).getSecurityName()+"),type("+securityList.get(0).getType()+")");
+		System.out.println("List size: "+securityList.size());
 	}
 
 	@Test
 	public void getBondListTest(){
+		String date = "2019-03-21";
 		List<Security> securityList = new ArrayList<Security>();
-		securityList = service.getSecurityList("Bond");
+		securityList = service.getSecurityList("Bond", date);
 		System.out.println("Security List: name("+securityList.get(0).getSecurityName()+"),type("+securityList.get(0).getType()+")");
+		System.out.println("List size: "+securityList.size());
 	}
 
 	@Test
 	public void getFuturesListTest(){
+		String date = "2019-03-21";
 		List<Security> securityList = new ArrayList<Security>();
-		securityList = service.getSecurityList("Futures");
+		securityList = service.getSecurityList("Futures",date);
 		System.out.println("Security List: name("+securityList.get(0).getSecurityName()+"),type("+securityList.get(0).getType()+")");
+		System.out.println("List size: "+securityList.size());
 	}
 
 	@Test
 	public void getETFsListTest(){
+		String date = "2019-03-21";
 		List<Security> securityList = new ArrayList<Security>();
-		securityList = service.getSecurityList("ETFs");
+		securityList = service.getSecurityList("ETFs",date);
 		System.out.println("Security List: name("+securityList.get(0).getSecurityName()+"),type("+securityList.get(0).getType()+")");
+		System.out.println("List size: "+securityList.size());
+	}
+
+
+	@Test
+	public void getSecurityHistoryTest(){
+		List<Security> securityList = new ArrayList<Security>();
+		securityList = service.getSecurityHistory("Stuck");
+		System.out.println("Security List: name("+securityList.get(0).getSecurityName()+"),type("+securityList.get(0).getType()+")");
+		System.out.println("List size: "+securityList.size());
 	}
 
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.mapper.SecurityMapper" >
   <resultMap id="BaseResultMap" type="com.entity.Security" >
     <id column="security_name" property="securityName" jdbcType="VARCHAR" />
-    <id column="date" property="date" jdbcType="DATE" />
+    <id column="date" property="date" jdbcType="VARCHAR" />
     <result column="open" property="open" jdbcType="DOUBLE" />
     <result column="high" property="high" jdbcType="DOUBLE" />
     <result column="low" property="low" jdbcType="DOUBLE" />
@@ -21,20 +21,20 @@
     <include refid="Base_Column_List" />
     from security
     where security_name = #{securityName,jdbcType=VARCHAR}
-      and date = #{date,jdbcType=DATE}
+      and date = #{date,jdbcType=VARCHAR}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="com.entity.SecurityKey" >
     delete from security
     where security_name = #{securityName,jdbcType=VARCHAR}
-      and date = #{date,jdbcType=DATE}
+      and date = #{date,jdbcType=VARCHAR}
   </delete>
 
   <insert id="insert" parameterType="com.entity.Security" >
     insert into security (security_name, date, open, 
       high, low, close, volume, 
       type)
-    values (#{securityName,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{open,jdbcType=DOUBLE}, 
+    values (#{securityName,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{open,jdbcType=DOUBLE},
       #{high,jdbcType=DOUBLE}, #{low,jdbcType=DOUBLE}, #{close,jdbcType=DOUBLE}, #{volume,jdbcType=INTEGER}, 
       #{type,jdbcType=VARCHAR})
   </insert>
@@ -72,7 +72,7 @@
         #{securityName,jdbcType=VARCHAR},
       </if>
       <if test="date != null" >
-        #{date,jdbcType=DATE},
+        #{date,jdbcType=VARCHAR},
       </if>
       <if test="open != null" >
         #{open,jdbcType=DOUBLE},
@@ -118,7 +118,7 @@
       </if>
     </set>
     where security_name = #{securityName,jdbcType=VARCHAR}
-      and date = #{date,jdbcType=DATE}
+      and date = #{date,jdbcType=VARCHAR}
   </update>
 
   <update id="updateByPrimaryKey" parameterType="com.entity.Security" >
@@ -130,7 +130,7 @@
       volume = #{volume,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR}
     where security_name = #{securityName,jdbcType=VARCHAR}
-      and date = #{date,jdbcType=DATE}
+      and date = #{date,jdbcType=VARCHAR}
   </update>
 
   <select id="selectAllSecurity" resultMap="BaseResultMap">
@@ -144,6 +144,13 @@
     <include refid="Base_Column_List" />
     from security
     where type = #{type,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSecurityByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from security
+    where security_name = #{securityName,jdbcType=VARCHAR}
   </select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package com.entity;
 
-import java.util.Date;
 
 public class User {
     private Integer userId;
@@ -11,7 +10,7 @@ public class User {
 
     private Integer role;
 
-    private Date startDate;
+    private String startDate;
 
     private String position;
 
@@ -49,11 +48,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 

@@ -6,7 +6,7 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
     <result column="role" property="role" jdbcType="INTEGER" />
-    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
@@ -44,7 +44,7 @@
       role, start_date, position, 
       description)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
-      #{role,jdbcType=INTEGER}, #{startDate,jdbcType=DATE}, #{position,jdbcType=VARCHAR}, 
+      #{role,jdbcType=INTEGER}, #{startDate,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR},
       #{description,jdbcType=VARCHAR})
   </insert>
 
@@ -87,7 +87,7 @@
         #{role,jdbcType=INTEGER},
       </if>
       <if test="startDate != null" >
-        #{startDate,jdbcType=DATE},
+        #{startDate,jdbcType=VARCHAR},
       </if>
       <if test="position != null" >
         #{position,jdbcType=VARCHAR},
@@ -111,7 +111,7 @@
         role = #{role,jdbcType=INTEGER},
       </if>
       <if test="startDate != null" >
-        start_date = #{startDate,jdbcType=DATE},
+        start_date = #{startDate,jdbcType=VARCHAR},
       </if>
       <if test="position != null" >
         position = #{position,jdbcType=VARCHAR},
@@ -129,7 +129,7 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
       role = #{role,jdbcType=INTEGER},
-      start_date = #{startDate,jdbcType=DATE},
+      start_date = #{startDate,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}

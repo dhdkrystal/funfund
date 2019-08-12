@@ -5,6 +5,7 @@ import com.entity.SecurityKey;
 import com.entity.User;
 import com.util.Error;
 
+import java.util.Date;
 import java.util.List;
 
 public interface SecurityService {
@@ -28,5 +29,10 @@ public interface SecurityService {
     /*
     *Select security list of stock or bond or futures or etfs
      */
-    List<Security> getSecurityList(String type);
+    List<Security> getSecurityList(String type, String date);
+
+    /*
+    *Select a security's history
+     */
+    List<Security> getSecurityHistory(String securityName);
 }

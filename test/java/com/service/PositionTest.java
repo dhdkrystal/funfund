@@ -27,10 +27,9 @@ public class PositionTest {
 		Error error;
 		Position position = new Position();
 
-		Date date = new Date(2018,6,6);
 		position.setPortfolioName("ACBN");
-		position.setSecurityName("Depuo");
-		position.setDate(date);
+		position.setSecurityName("Depuo1");
+		position.setDate("2018-06-05");
 		position.setOpen(18.80);
 		position.setHigh(21.50);
 		position.setLow(14.58);
@@ -45,8 +44,8 @@ public class PositionTest {
 	public void deletePositionTest() throws Exception{
 		Error error;
 		PositionKey positionKey = new PositionKey();
-		positionKey.setPortfolioName("BCNN");
-		positionKey.setSecurityName("Cons");
+		positionKey.setPortfolioName("ACBN");
+		positionKey.setSecurityName("Depuo1");
 		error = service.deletePosition(positionKey);
 		System.out.println(error.getMessage());
 	}

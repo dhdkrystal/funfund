@@ -65,6 +65,7 @@
     $('#login').click(
         function () {
             var loginType = document.getElementById("loginType").value;
+            var password = document.getElementById("loginPwd").value;
             if(loginType == "普通用户"){
 
                 console.log($('#loginForm').serialize());
@@ -76,7 +77,7 @@
                     type: "post",
                     data:  {
                         userName:$('#loginName').val(),
-                        userPwd:$('#loginPwd').val(),
+                        password:password,
                         role:role
                     },
                     success: function (data) {
@@ -105,7 +106,7 @@
                     type: "post",
                     data:  {
                         userName:$('#loginName').val(),
-                        userPwd:$('#loginPwd').val(),
+                        password:$('#loginPwd').val(),
                         role:role
                     },
                     success: function (data) {

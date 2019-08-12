@@ -14,4 +14,7 @@ public class Constant {
     public static final int UPDATE_ERROR=9; //update success
 
     public static final int DUPLICATE_NAME=10; //duplicate
+
+    public static final int FILTER_SUCCESS=11;   //filter success
+    public static final int FILTER_ERROR=12;   //filter error
 }
