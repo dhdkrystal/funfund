@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Position" >
+    <id column="portfolio_name" property="portfolioName" jdbcType="VARCHAR" />
+    <id column="security_name" property="securityName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="close" property="close" jdbcType="DOUBLE" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    portfolio_name, security_name, type, amount, close, money
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.entity.PositionKey" >
+    select
+    <include refid="Base_Column_List" />
+    from position
+    where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
+    and security_name = #{securityName,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.entity.PositionKey" >
+    delete from position
+    where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
+    and security_name = #{securityName,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.entity.Position" >
+    insert into position (portfolio_name, security_name, type,
+    amount, close, money)
+    values (#{portfolioName,jdbcType=VARCHAR}, #{securityName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+    #{amount,jdbcType=INTEGER}, #{close,jdbcType=DOUBLE}, #{money,jdbcType=DOUBLE})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.entity.Position" >
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        portfolio_name,
+      </if>
+      <if test="securityName != null" >
+        security_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="close != null" >
+        close,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="portfolioName != null" >
+        #{portfolioName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityName != null" >
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Position" >
+    update position
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="close != null" >
+        close = #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
+    and security_name = #{securityName,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.entity.Position" >
+    update position
+    set type = #{type,jdbcType=VARCHAR},
+    amount = #{amount,jdbcType=INTEGER},
+    close = #{close,jdbcType=DOUBLE},
+    money = #{money,jdbcType=DOUBLE}
+    where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
+    and security_name = #{securityName,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectPositionByPortfolio" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from position
+    where portfolio_name = #{portfolioName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAllPositions" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from position
+  </select>
+
+</mapper>

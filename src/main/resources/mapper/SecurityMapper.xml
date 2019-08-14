@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.SecurityMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Security" >
+    <id column="security_name" property="securityName" jdbcType="VARCHAR" />
+    <id column="date" property="date" jdbcType="VARCHAR" />
+    <result column="open" property="open" jdbcType="DOUBLE" />
+    <result column="high" property="high" jdbcType="DOUBLE" />
+    <result column="low" property="low" jdbcType="DOUBLE" />
+    <result column="close" property="close" jdbcType="DOUBLE" />
+    <result column="volume" property="volume" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="change_price" property="changePrice" jdbcType="DOUBLE" />
+    <result column="change_rate" property="changeRate" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    security_name, date, open, high, low, close, volume, type, change_price, change_rate
+  </sql>
+
+  <sql id="Security_Name_List" >
+    security_name
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.entity.SecurityKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from security
+    where security_name = #{securityName,jdbcType=VARCHAR}and date = #{date,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="com.entity.SecurityKey" >
+    delete from security
+    where security_name = #{securityName,jdbcType=VARCHAR}
+      and date = #{date,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByName" parameterType="java.lang.String" >
+    delete from security
+    where security_name = #{securityName,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.entity.Security" >
+    insert into security (security_name, date, open, 
+      high, low, close, volume, 
+      type, change_price, change_rate
+      )
+    values (#{securityName,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{open,jdbcType=DOUBLE}, 
+      #{high,jdbcType=DOUBLE}, #{low,jdbcType=DOUBLE}, #{close,jdbcType=DOUBLE}, #{volume,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{changePrice,jdbcType=DOUBLE}, #{changeRate,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Security" >
+    insert into security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="securityName != null" >
+        security_name,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="low != null" >
+        low,
+      </if>
+      <if test="close != null" >
+        close,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="changePrice != null" >
+        change_price,
+      </if>
+      <if test="changeRate != null" >
+        change_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="securityName != null" >
+        #{securityName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=DOUBLE},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="changePrice != null" >
+        #{changePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="changeRate != null" >
+        #{changeRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Security" >
+    update security
+    <set >
+      <if test="open != null" >
+        open = #{open,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        high = #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="low != null" >
+        low = #{low,jdbcType=DOUBLE},
+      </if>
+      <if test="close != null" >
+        close = #{close,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="changePrice != null" >
+        change_price = #{changePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="changeRate != null" >
+        change_rate = #{changeRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where security_name = #{securityName,jdbcType=VARCHAR}
+      and date = #{date,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.entity.Security" >
+    update security
+    set open = #{open,jdbcType=DOUBLE},
+      high = #{high,jdbcType=DOUBLE},
+      low = #{low,jdbcType=DOUBLE},
+      close = #{close,jdbcType=DOUBLE},
+      volume = #{volume,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      change_price = #{changePrice,jdbcType=DOUBLE},
+      change_rate = #{changeRate,jdbcType=DOUBLE}
+    where security_name = #{securityName,jdbcType=VARCHAR}
+      and date = #{date,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllSecurity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from security
+  </select>
+
+  <select id="selectSecurityByType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from security
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSecurityByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from security
+    where security_name = #{securityName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAllSecurityName" resultMap="BaseResultMap">
+    select
+    <include refid="Security_Name_List" />
+    from security
+  </select>
+
+</mapper>
